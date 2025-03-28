@@ -132,7 +132,7 @@ c. Now run following cmd.
 npm start
 ```
 
-this will start our live local host server.
+this will start live local host server.
 
 <hr>
 
@@ -142,4 +142,29 @@ this will start our live local host server.
 
 <hr>
 
-2:53.
+### Classes in Ts.
+
+_In Ts, we first have to define the parameters and their types before writing constructor._
+
+```typescript
+class User {
+  // In Ts, we first have to define the parameters and their types before writing constructor.
+  email: string;
+  code: number;
+  city: string = "Pune";
+  constructor(email: string, code: number) {
+    this.email = email;
+    this.code = code;
+  }
+}
+
+let shubham = new User("shubham@gmail.com", 292929);
+
+shubham.city = "New york";
+```
+
+**From above code, `city` variable needs a initializer because we dont add it to constructor.**
+
+_I can even `readonly` property to those variable._
+
+3:04
