@@ -119,9 +119,11 @@ npm i lite-server
 
 b. Create scripts. Go to **package.json**.
 _remove the test script_
+
 ![alt text](image-1.png)
 
 _Add the following script._
+
 ![alt text](image-2.png)
 
 c. Now run following cmd.
