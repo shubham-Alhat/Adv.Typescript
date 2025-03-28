@@ -71,9 +71,73 @@ This folder structure may seem like -
 
 6. But we also have to load script tag in **index.html**. and we know that at the end, **Ts** is get converted into **Js**.
 
-7. Here, we can create index.html file manually inside dist folder or it will get autogenerate when ts file get compiled. Right????
+7. Here, we can create index.js file manually inside dist folder or it will get autogenerate when index.ts file get compiled. Right????
 
 _But who is going to tell that generate js file **inside the dist folder**._
 ----> **tsconfig.json**.
 
-Here we create manually & load script tag with `src="./dist/index.js"`
+If you dont create manually, write some code in src/index.ts and run the cmd `tsc -w`. But first config the _tsconfig.json as shown below. so that the compiled file will generate in **dist** folder_.
+
+Here we create manually & load script tag with `src="./dist/index.js"` in **index.html**.
+
+8. Go to **tsconfig.json**, 62 line no. comment in the `outDir` and give folder `dist`.
+
+```json
+"outDir": "./dist" /* Specify an output folder for all emitted files. */,
+```
+
+It will actually scan whole code base and whenever there is compilation, the compiled ones will store in `dist` folder.
+
+9. Lets check it.Run the following cmd
+
+```
+tsc -w
+```
+
+**Watch mode ON.**
+_This will watch our code simultanously and compiled it as well._
+
+So, when i change index.ts file and save it. changes get reflect in **index.js** inside _dist_ folder.
+
+<hr>
+
+#### How to start it on server.
+
+Now, we know that to start a server, we need **index.html** which we have.
+
+There are two ways to do this.
+
+1. Go to index.html > Right click > Open with live server. (_Make sure your script tag is loaded._)
+
+2. Install Package name **lite server**.
+
+a. Run the following cmd.
+
+```bash
+npm i lite-server
+```
+
+b. Create scripts. Go to **package.json**.
+_remove the test script_
+![alt text](image-1.png)
+
+_Add the following script._
+![alt text](image-2.png)
+
+c. Now run following cmd.
+
+```bash
+npm start
+```
+
+this will start our live local host server.
+
+<hr>
+
+#### Here, we use our Live server. (1st way)
+
+#### IMP Note : **Make sure you have watch mode ON as well. So that Ts will compiled whenever there will be changes.**
+
+<hr>
+
+2:53.
