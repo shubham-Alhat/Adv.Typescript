@@ -165,6 +165,60 @@ shubham.city = "New york";
 
 **From above code, `city` variable needs a initializer because we dont add it to constructor.**
 
-_I can even `readonly` property to those variable._
+_I can even apply `readonly` property to those variable._
 
-3:04
+For **city** variable, there we cannot reassign but it is accessible there.
+But if we dont want to accessible, we can use `private` keyword.
+
+_see the code below._
+
+```typescript
+class User {
+  // here we use private keyword
+  email: string;
+  code: number;
+  private city: string = "Pune";
+  constructor(email: string, code: number) {
+    this.email = email;
+    this.code = code;
+  }
+}
+
+let shubham = new User("shubham@gmail.com", 292929);
+
+shubham.city; // Throws error here. because we can access here. we can only access in class "User".
+```
+
+There is another modifier "public" which actually does opposite of "private".
+**If we dont mention any othem, the variable is in public mode by default.**
+
+**In javacsript world, it actually `#` which used to act as private.**
+
+```javascript
+class Person {
+  #name; // Private field
+
+  constructor(name) {
+    this.#name = name;
+  }
+
+  getName() {
+    return this.#name; // Accessing private field inside the class
+  }
+}
+
+const person = new Person("Swayam");
+console.log(person.getName()); // ✅ Works: Outputs "Swayam"
+
+console.log(person.#name); // ❌ Error: Private field cannot be accessed outside the class
+```
+
+#### Getter & setter in Ts.
+
+It comes when we have to customize the accessiblity of any values. sometimes, if anyone ask for password, we dont want but actaully give it modifying or encrypted. this is when our **getter** and **setter** comes in action.
+
+whenever we create any variable or properties in class, get and set method automatically get assign to them.So we can apply set and get methods to any variable in class.
+
+_remind the prototype object we get and there are methods._
+
+**we can apply getter and setter to any variable there in class.**
