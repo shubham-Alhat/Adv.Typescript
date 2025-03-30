@@ -26,4 +26,32 @@ class User {
   }
 }
 
-// In Js there is #
+// Getter and setter in Ts
+
+class Car {
+  constructor(protected model: string, price: number) {}
+
+  get price(): number {
+    return this.price;
+  }
+
+  set price(value) {
+    this.price = value;
+  }
+}
+
+const myCar = new Car("Benz", 309999);
+
+console.log(myCar.price);
+
+myCar.price = 490000;
+console.log(myCar.price, "Updated value");
+
+
+class subCar extends Car {
+  carInsurance: boolean = true;
+  anyFun() {
+    this.model = 
+  }
+
+}
