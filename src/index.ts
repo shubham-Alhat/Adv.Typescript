@@ -47,11 +47,9 @@ console.log(myCar.price);
 myCar.price = 490000;
 console.log(myCar.price, "Updated value");
 
-
 class subCar extends Car {
   carInsurance: boolean = true;
   anyFun() {
-    this.model = 
+    this.model = "mercediz";
   }
-
 }
