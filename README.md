@@ -360,4 +360,151 @@ This below image when I assign -ve number to `price` property.
 
 **setter and getter are actually used to deal with private properties and have additional logic to it.**
 
-3:19 --------
+<hr>
+
+#### Interface in classes.
+
+here, we actually used in classes. just see below.
+
+It focus on when we create interface, and attach it to a class. **How it actually works ?**
+
+**3:19 ---- Timestamp to comeback and revise it.**
+
+```typescript
+interface takePhoto {
+  cameraMode: string;
+  filter: string;
+  burst: number;
+}
+
+interface Story {
+  isPhoto: boolean;
+  createStory(): number;
+}
+
+class Instagram implements takePhoto {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burst: number
+  ) {}
+}
+
+class Youtube implements takePhoto, Story {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burst: number,
+    public isPhoto: boolean,
+    public liveStream: string // added new one
+  ) {}
+
+  createStory(): number {
+    return 404;
+  }
+}
+```
+
+_While doing this, we actually have to follow properties and should implement them in class. otherwise it throws an error._
+
+When to Use Interfaces?
+
+✔ When multiple classes share a common structure.
+
+✔ When enforcing strict type-checking in APIs or services.
+
+✔ When implementing multiple behaviors in a single class.
+
+✔ When writing scalable and maintainable code.
+
+<hr>
+
+#### Abstract Classes.
+
+It is actually a class from which we cannot create any object. but we can create a object from class which inherits the abstract class.
+
+_See the below code._
+
+```typescript
+abstract class TakePhoto {
+  constructor(
+    public cameraMode: string,
+    public burst: string,
+    public panamoraMode: boolean
+  ) {}
+}
+
+class Instagram extends TakePhoto {}
+
+const shubham = new Instagram("phot2", "sgs", true);
+
+export {};
+```
+
+An abstract class in TypeScript is like a blueprint for other classes. You cannot create an object from an abstract class. **It only defines methods and properties that child classes must implement**.
+
+👉 Think of it like a template that enforces rules on child classes.
+
+```typescript
+//  This cannot be used to create an object directly.
+// Acts as a blueprint for car-related classes.
+abstract class CarFactory {
+  // 2️⃣ Constructor (Common Properties for All Cars)
+  // Every car will have a name and a model.
+  // These values are set when a child class (like BMW) is created.
+  constructor(public carName: string, public model: string) {}
+
+  // 3️⃣ Regular (Concrete) Methods
+  // ✅ These methods are already implemented, so child classes can use them directly.
+  // ✅ No need for child classes to override these unless they want different behavior.
+  start(carName: string): string {
+    return `${carName} has started..`;
+  }
+
+  stop(carName: string): string {
+    return `${carName} is stopped..`;
+  }
+
+  // 4️⃣ Abstract Methods (Must Be Implemented by Child Classes)
+  // ❌ These methods are not implemented inside CarFactory.
+  // ✅ Child classes must provide their own implementations.
+  abstract carSpeed(speed: number): string;
+  abstract carMileage(distance: number): string;
+}
+
+// 5️⃣ Child Class (BMW) - Extending CarFactory
+// BMW inherits from CarFactory, so it gets:
+// ✅ The start() and stop() methods (already implemented).
+// ❌ But it must implement carSpeed() and carMileage().
+class BMW extends CarFactory {
+  // 6️⃣ Implementing the Abstract Methods in BMW
+  // Since every car has a different speed and mileage, BMW provides its own implementation.
+  carSpeed(speed: number): string {
+    return `${speed}km/hr.`;
+  }
+
+  carMileage(distance: number): string {
+    return `${distance}/ltr`;
+  }
+}
+
+// 7️⃣ Creating an Object of BMW
+const myCar = new BMW("BMW-Marcy", "x10");
+console.log(myCar.start(myCar.carName)); // ✅ Uses inherited method
+console.log(myCar.carSpeed(250)); // ✅ Uses overridden method
+console.log(myCar.carMileage(15)); // ✅ Uses overridden method
+```
+
+#### Key Takeaways
+
+✅ Abstract classes enforce structure but can't be instantiated.
+
+✅ Child classes must implement abstract methods while inheriting normal methods.
+
+✅ Useful when multiple classes share common methods but have their own variations for some.
+
+💡 You can now create more child classes like Tesla, Audi, etc., and they will have their own speed and mileage!
+
+<hr>
+
+#### Now super in abstract classes.

@@ -42,7 +42,6 @@ class subCar extends Car {
         this.carInsurance = true;
     }
     anyFun() {
-        this.model =
-        ;
+        this.model = "mercediz";
     }
 }
