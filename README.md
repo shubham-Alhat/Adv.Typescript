@@ -508,3 +508,48 @@ console.log(myCar.carMileage(15)); // ✅ Uses overridden method
 <hr>
 
 #### Now super in abstract classes.
+
+In TypeScript, super is used to call the constructor or methods of a parent class from a derived (child) class. It is mainly used in class inheritance when working with extends.
+
+##### 🔹 Using super in the Constructor
+
+**When a class extends another class, you must call super() inside the constructor of the child class before accessing `this`.**
+
+```typescript
+class Parent {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+class Child extends Parent {
+  age: number;
+
+  constructor(name: string, age: number) {
+    super(name); // Calls the Parent's constructor
+    this.age = age;
+  }
+}
+
+const child = new Child("Swayam", 20);
+console.log(child.name); // Output: Swayam
+console.log(child.age); // Output: 20
+```
+
+**But Why we have to call parent contructor ???**
+
+Because, when there is parent and a child class, all the properties and methds of parent class inherited to child class. but to access them we need to call parent class constructor using super(_any property of parent class_).
+
+**super() Ensures the Parent is Initialized**
+
+🔑 Key Takeaways
+
+✔ Always call super() first in a child class before using this.
+
+✔ It ensures that the parent’s constructor runs before the child’s properties are initialized.
+
+✔ If you don’t define a constructor in the child class, TypeScript calls the parent’s constructor automatically.
+
+✔ No super() is needed if the class does not extend another class.

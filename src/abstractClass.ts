@@ -27,4 +27,18 @@ const myCar = new BMW("BMW-Marcy", "x10");
 
 console.log(myCar.start);
 
+class Parent {
+  constructor(public name: string) {}
+}
+
+class Child extends Parent {
+  constructor(public name: string, public age: number) {
+    super(name);
+    this.name = name;
+    this.age = age;
+  }
+}
+
+const newChild = new Child("shubham", 22);
+
 export {};
