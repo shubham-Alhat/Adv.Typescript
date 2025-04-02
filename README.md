@@ -553,3 +553,85 @@ Because, when there is parent and a child class, all the properties and methds o
 ✔ If you don’t define a constructor in the child class, TypeScript calls the parent’s constructor automatically.
 
 ✔ No super() is needed if the class does not extend another class.
+
+<hr>
+
+#### Generics in Ts.
+
+It is actually used when we have to take same **type** of argument and return same **type** of value.
+
+```typescript
+const score: Array<number> = []; // this is another way to create a array.
+
+const names: Array<string> = [];
+```
+
+```typescript
+function identityOne(val: number | string): number | string {
+  return val;
+}
+```
+
+_From above, How Or we are going to need ????._
+
+```typescript
+function identityTwo(val: any): any {
+  return val;
+}
+```
+
+_Here, actually we can take argument any type and return any..._
+
+```typescript
+function identityThree<Type>(val: Type): Type {
+  return val;
+}
+```
+
+_This is how we actually used generics in Ts. It is going to take arg of any type and return that type of value._
+
+**We can actually create our own type and use generic. the below is code.**
+
+```typescript
+//   Here we actually created our own type.
+interface Laptop {
+  brand: string;
+  price: number;
+}
+
+// Generic function
+function identityFour<T>(obj: T): T {
+  return obj;
+}
+
+// Calling the function with Laptop type
+identityFour<Laptop>({ brand: "HP", price: 120000 });
+```
+
+IMP : **Here, we got generic function because it taking arg of `T` type and return same type. while calling function we use `<Laptop>`. we actually tellling typescript that 👉 For this call, treat T as the Laptop interface.**
+
+**Now, T is fixed as Laptop, so TypeScript expects an object of this type.**
+
+**Because the function’s return type is T, and we set T = Laptop,
+TypeScript understands that the returned value is of type Laptop.**
+
+**Another great example.**
+
+```typescript
+interface Laptop {
+  brand: string;
+  version: string;
+}
+
+function getLaptop<T>(obj: T): T {
+  return obj;
+}
+
+const laptopDetails: Laptop = getLaptop<Laptop>({
+  brand: "HP",
+  version: "victus x18",
+});
+
+console.log(laptopDetails.brand);
+console.log(laptopDetails.version);
+```
