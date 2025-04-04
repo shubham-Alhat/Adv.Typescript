@@ -32,3 +32,33 @@ const laptopDetails: Laptop = getLaptop<Laptop>({
 
 console.log(laptopDetails.brand);
 console.log(laptopDetails.version);
+
+// with Array
+
+function getProduct<T>(product: T[]): T {
+  // do some database operations
+  return product[2];
+}
+
+// Arrow function
+
+const getMorePrducts = <T>(product: T[]): T => {
+  const myIndex = 4;
+  return product[myIndex];
+};
+
+// generics `extend` key word.
+
+interface Database {
+  username: string;
+  password: number;
+}
+
+function anotherFunction<T, U extends Database>(valOne: T, valTwo: U): Object {
+  return {
+    valOne,
+    valTwo,
+  };
+}
+
+anotherFunction(34, { username: "shubham29", password: 1234 });

@@ -628,10 +628,72 @@ function getLaptop<T>(obj: T): T {
 }
 
 const laptopDetails: Laptop = getLaptop<Laptop>({
-  brand: "HP",
+  brand: "Lenovo",
   version: "victus x18",
 });
 
 console.log(laptopDetails.brand);
 console.log(laptopDetails.version);
 ```
+
+#### Generics with array and Arrow function.
+
+```typescript
+function getProduct<T>(product: T[]): T {
+  // do some database operations
+  return product[2];
+}
+```
+
+```typescript
+const getMorePrducts = <T>(product: T[]): T => {
+  const myIndex = 4;
+  return product[myIndex];
+};
+```
+
+<hr>
+
+### But in most codebase, you are going to see `< T >` like this `< T , >`. Yes this "," not different but just for indicating that the function is generic not regular function.
+
+<hr>
+
+![alt text](image-6.png)
+Its not giving error but when i use `extend` using in line **<T, U>**, it will give me error.
+
+![alt text](image-7.png)
+
+Now, if we create a interface `Database`, here how we have to do it.
+
+```typescript
+interface Database {
+  name: string;
+  password: number;
+}
+
+// here, U is extend to interface Database
+function anotherFunction<T, U extends Database>(valOne: T, valTwo: U): Object {
+  return {
+    valOne,
+    valTwo,
+  };
+}
+
+anotherFunction(34, { username: "shubham29", password: 1234 });
+```
+
+<hr>
+
+#### Norrowing in Ts.
+
+**It is actually very easy but do go on documentation and read.**
+
+_Below is hitesh's example._
+
+```typescript
+const arr = [1, 2, 3];
+
+console.log(typeof arr); // Output: "object"
+```
+
+it becames tricky now. **Always remember, Js and Ts treat Array as Object.**
