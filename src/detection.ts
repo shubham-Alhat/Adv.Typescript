@@ -82,11 +82,36 @@ interface Square {
   side: number;
 }
 
-type Shape = Circle | Square;
+interface Rectangle {
+  kind: "rectangle";
+  length: number;
+  breadth: number;
+}
 
-function getTrueShape(shape: Circle | Square) {
+type Shape = Circle | Square | Rectangle;
+
+function getTrueShape(shape: Shape) {
   if (shape.kind === "circle") {
-    return (shape.radius * 21) / 7;
+    return Math.PI * shape.radius;
   }
-  return shape.side * 4;
+  if (shape.kind === "rectangle") {
+    return shape.breadth + 74;
+  }
+  return shape.side * shape.side; // it will gave an error but if put recatngle check, it wont
+}
+
+// Exhaustedcheck and never using above example
+
+function getShape(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius;
+    case "square":
+      return shape.side * shape.side;
+    case "rectangle":
+      return shape.length * shape.breadth;
+    default:
+      const defaultShape: never = shape;
+      return defaultShape;
+  }
 }
