@@ -99,7 +99,8 @@ function getTrueShape(shape: Shape) {
   }
   return shape.side * shape.side; // it will gave an error but if put recatngle check, it wont
 }
-
+// hello worl
+const printHello: string = "shubham";
 // Exhaustedcheck and never using above example
 
 function getShape(shape: Shape) {
